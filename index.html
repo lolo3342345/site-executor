@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BACCON X - Script Executor</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0;
+            border-bottom: 2px solid rgba(124, 58, 237, 0.3);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .logo-box {
+            width: 8px;
+            height: 50px;
+            background: linear-gradient(180deg, #7c3aed 0%, #a78bfa 100%);
+            border-radius: 4px;
+            box-shadow: 0 0 20px rgba(124, 58, 237, 0.5);
+        }
+
+        h1 {
+            font-size: 3em;
+            font-weight: 700;
+            letter-spacing: 3px;
+            background: linear-gradient(90deg, #7c3aed 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            color: #9ca3af;
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+
+        .main-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            margin-top: 60px;
+            padding: 40px 0;
+        }
+
+        .content-box {
+            background: rgba(30, 30, 50, 0.5);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .content-box h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #a78bfa;
+        }
+
+        .features {
+            list-style: none;
+            margin: 30px 0;
+        }
+
+        .features li {
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(124, 58, 237, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.1em;
+        }
+
+        .features li:last-child {
+            border-bottom: none;
+        }
+
+        .check-icon {
+            width: 24px;
+            height: 24px;
+            background: #7c3aed;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%);
+            color: white;
+            border: none;
+            padding: 18px 45px;
+            font-size: 1.2em;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4);
+            display: inline-block;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(124, 58, 237, 0.6);
+        }
+
+        .preview-box {
+            position: relative;
+            background: rgba(20, 20, 35, 0.8);
+            padding: 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .preview-image {
+            width: 100%;
+            border-radius: 12px;
+            border: 2px solid rgba(124, 58, 237, 0.4);
+            box-shadow: 0 10px 40px rgba(124, 58, 237, 0.3);
+        }
+
+        .status-badge {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            background: #10b981;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9em;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 60px;
+            border-top: 1px solid rgba(124, 58, 237, 0.3);
+            color: #9ca3af;
+        }
+
+        @media (max-width: 768px) {
+            .main-section {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .content-box h2 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-box"></div>
+                <h1>BACCON X</h1>
+            </div>
+            <p class="subtitle">Script Executor Profissional</p>
+        </header>
+
+        <section class="main-section">
+            <div class="content-box">
+                <h2>Executor Poderoso</h2>
+                <p style="color: #d1d5db; line-height: 1.8; font-size: 1.1em;">
+                    BACCON X é um executor de scripts Lua avançado, projetado para desenvolvedores e entusiastas. Interface moderna, execução rápida e recursos profissionais.
+                </p>
+
+                <ul class="features">
+                    <li>
+                        <span class="check-icon">✓</span>
+                        <span>Interface intuitiva e moderna</span>
+                    </li>
+                    <li>
+                        <span class="check-icon">✓</span>
+                        <span>Execução rápida de scripts Lua</span>
+                    </li>
+                    <li>
+                        <span class="check-icon">✓</span>
+                        <span>Editor de código integrado</span>
+                    </li>
+                    <li>
+                        <span class="check-icon">✓</span>
+                        <span>Suporte completo a comandos</span>
+                    </li>
+                    <li>
+                        <span class="check-icon">✓</span>
+                        <span>Atualizações constantes</span>
+                    </li>
+                </ul>
+
+                <a href="#" class="download-btn" onclick="handleDownload()">⬇ Baixar BACCON X</a>
+            </div>
+
+            <div class="preview-box">
+                <div class="status-badge">
+                    <span class="status-dot"></span>
+                    Ready
+                </div>
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 500'%3E%3Crect width='800' height='500' fill='%23161622'/%3E%3Crect x='10' y='10' width='780' height='80' rx='10' fill='%231a1a2e'/%3E%3Crect x='20' y='25' width='6' height='50' rx='3' fill='%237c3aed'/%3E%3Ctext x='40' y='55' font-family='Arial' font-size='28' fill='white' font-weight='bold'%3EBACCON X%3C/text%3E%3Ctext x='40' y='80' font-family='Arial' font-size='14' fill='%239ca3af'%3EScript Executor%3C/text%3E%3Crect x='650' y='30' width='130' height='40' rx='8' fill='%237c3aed'/%3E%3Ctext x='685' y='57' font-family='Arial' font-size='16' fill='white' font-weight='bold'%3E▶ Execute%3C/text%3E%3Crect x='20' y='110' width='760' height='370' rx='10' fill='%230a0a0a'/%3E%3Ctext x='35' y='145' font-family='Consolas' font-size='14' fill='%236b7280'%3E1%3C/text%3E%3Ctext x='35' y='165' font-family='Consolas' font-size='14' fill='%236b7280'%3E2%3C/text%3E%3Ctext x='35' y='185' font-family='Consolas' font-size='14' fill='%236b7280'%3E3%3C/text%3E%3Ctext x='35' y='205' font-family='Consolas' font-size='14' fill='%236b7280'%3E4%3C/text%3E%3Ctext x='70' y='145' font-family='Consolas' font-size='14' fill='%239ca3af'%3E-- BACCON X Script Editor%3C/text%3E%3Ctext x='70' y='165' font-family='Consolas' font-size='14' fill='%239ca3af'%3E-- Write your Lua script here...%3C/text%3E%3Ctext x='70' y='205' font-family='Consolas' font-size='14' fill='%23a78bfa'%3Eprint%3C/text%3E%3Ctext x='118' y='205' font-family='Consolas' font-size='14' fill='white'%3E(%3C/text%3E%3Ctext x='130' y='205' font-family='Consolas' font-size='14' fill='%2310b981'%3E%22Hello from Baccon X!%22%3C/text%3E%3Ctext x='310' y='205' font-family='Consolas' font-size='14' fill='white'%3E)%3C/text%3E%3Crect x='70' y='215' width='2' height='14' fill='%237c3aed'/%3E%3C/svg%3E" alt="BACCON X Preview" class="preview-image">
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 BACCON X. Todos os direitos reservados.</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">Use com responsabilidade e segurança.</p>
+        </footer>
+    </div>
+
+    <script>
+        function handleDownload() {
+            // COLE SEU LINK DO ARQUIVO .RAR AQUI:
+            const linkDownload = 'https://www.mediafire.com/file/o008mgqgo3l2h1g/net8.0-windows.rar/file';
+            
+            // Inicia o download
+            window.location.href = linkDownload;
+            
+            // Mostra mensagem de sucesso
+            setTimeout(() => {
+                alert('✅ Download do BACCON X iniciado!\n\n📦 Arquivo: BACCON_X.rar\n🔓 Extraia com WinRAR ou 7-Zip');
+            }, 500);
+        }
+    </script>
+</body>
+</html>
